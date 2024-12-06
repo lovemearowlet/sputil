@@ -46,6 +46,7 @@ int main(int argc, char **argv)
           printf ("\n");
           break;
         case 's':
+          printf("Starting system update...")
           system("sudo xbps-install -Su");
           break;
         case 'i':
