@@ -6,6 +6,7 @@ sudo make install
 ```
 and boom! it will be installed to /bin
 ## updateing
+remove th prev source dir then git clone it again then do:
 ```
 sudo make clean install
 ```
@@ -24,11 +25,7 @@ it should remove the install!
 ## usage:
 to update the void system simply do
 ```
-sputil -s v
-```
-to update a app do 
-```
-sputil -s (app)
+sputil -s
 ```
 to install something do:
 ```
