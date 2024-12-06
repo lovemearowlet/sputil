@@ -2,11 +2,25 @@
 #include <getopt.h>
 #include <stdlib.h>
 #include <string.h>
-
+int unstall(char ipkg[256]) {
+  printf("Starting to install %s\n", ipkg);
+  char basecmd[256] = "sudo xbps-remove -R ";
+  char uncmd[1028] = "";
+  strcat(uncmd, basecmd);
+  strcat(uncmd, ipkg);
+  system(uncmd);
+}
+int install(char ipkg[256]) {
+  printf("Starting to install %s\n", ipkg);
+  char basecmd[256] = "sudo xbps-install -S ";
+  char uncmd[1028] = "";
+  strcat(uncmd, basecmd);
+  strcat(uncmd, ipkg);
+  system(uncmd);
+}
 int main(int argc, char **argv) 
 {
   int c;
-
   while (1)
     {
       static struct option long_options[] =
@@ -18,15 +32,11 @@ int main(int argc, char **argv)
           {0, 0, 0, 0}
         };
       int option_index = 0;
-
-      c = getopt_long (argc, argv, "i:rs:",
+      c = getopt_long (argc, argv, "ir::s",
                        long_options, &option_index);
-
       if (c == -1)
         break;
-
-      switch (c)
-        {
+      switch (c) {
         case 0:
           if (long_options[option_index].flag != 0)
             break;
@@ -35,39 +45,37 @@ int main(int argc, char **argv)
             printf (" with arg %s", optarg);
           printf ("\n");
           break;
-
         case 's':
           system("sudo xbps-install -Su");
           break;
-
         case 'i':
-	  char icmd[256] = "sudo xbps-install -S ";
-	  strcat(icmd, optarg);
-          system(icmd);
+          if (optarg) {
+            install(optarg);
+          } else {
+            fprintf(stderr, "Error: -i requires a package name.\n");
+          }
           break;
-
+          break;
         case 'r':
-	  char uicmd[256] = "sudo xbps-remove -R ";
-          strcat(uicmd, optarg);
-	  system(uicmd);
+          if (optarg) {
+            unstall(optarg);
+          } else {
+            fprintf(stderr, "Error: -r requires a package name.\n");
+          }
           break;
-
+          break;
         case '?':
           /* getopt_long already printed an error message. */
           break;
-
         default:
           abort ();
         }
     }
-
-  if (optind < argc)
-    {
+  if (optind < argc) {
       printf ("non-option ARGV-elements: ");
       while (optind < argc)
         printf ("%s ", argv[optind++]);
       putchar ('\n');
     }
-
   exit (0);
 }
