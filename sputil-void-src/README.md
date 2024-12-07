@@ -35,6 +35,10 @@ to uninstall:
 ```
 sputil -r (app)
 ```
+to see options do:
+```
+sputil -h
+```
 ## why does this exist:
 i wanted to try out getopt and do a simple coding project. there will be versions for gentoo and arch later! i have plans to later add config file.
 
