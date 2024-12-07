@@ -4,7 +4,7 @@
 #include <string.h>
 int unstall(char ipkg[256]) {
   printf("Starting to install %s\n", ipkg);
-  char basecmd[256] = "sudo xbps-remove -R ";
+  char basecmd[256] = "sudo xbps-remove -Rv ";
   char uncmd[1028] = "";
   strcat(uncmd, basecmd);
   strcat(uncmd, ipkg);
@@ -12,7 +12,7 @@ int unstall(char ipkg[256]) {
 }
 int install(char ipkg[256]) {
   printf("Starting to install %s\n", ipkg);
-  char basecmd[256] = "sudo xbps-install -S ";
+  char basecmd[256] = "sudo xbps-install -Sv ";
   char uncmd[1028] = "";
   strcat(uncmd, basecmd);
   strcat(uncmd, ipkg);
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
           {0, 0, 0, 0}
         };
       int option_index = 0;
-      c = getopt_long (argc, argv, "ir::s",
+      c = getopt_long (argc, argv, "i:r:s",
                        long_options, &option_index);
       if (c == -1)
         break;
@@ -46,8 +46,8 @@ int main(int argc, char **argv)
           printf ("\n");
           break;
         case 's':
-          printf("Starting system update...");
-          system("sudo xbps-install -Su");
+          printf("Starting system update...\n");
+          system("sudo xbps-install -Suv");
           break;
         case 'i':
           if (optarg) {
