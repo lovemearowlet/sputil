@@ -9,6 +9,7 @@ int unstall(char ipkg[256]) {
   strcat(uncmd, basecmd);
   strcat(uncmd, ipkg);
   system(uncmd);
+  return 0;
 }
 int install(char ipkg[256]) {
   printf("Starting to install %s\n", ipkg);
@@ -17,6 +18,7 @@ int install(char ipkg[256]) {
   strcat(uncmd, basecmd);
   strcat(uncmd, ipkg);
   system(uncmd);
+  return 0;
 }
 int main(int argc, char **argv) 
 {
@@ -28,11 +30,11 @@ int main(int argc, char **argv)
           {"update",     no_argument,       0, 's'},
           {"uninstall",  required_argument, 0, 'r'},
           {"install",    required_argument, 0, 'i'},
-          
+          {"help",       no_argument,       0, 'h'},
           {0, 0, 0, 0}
         };
       int option_index = 0;
-      c = getopt_long (argc, argv, "i:r:s",
+      c = getopt_long (argc, argv, "hi:r:s",
                        long_options, &option_index);
       if (c == -1)
         break;
@@ -65,6 +67,12 @@ int main(int argc, char **argv)
           }
           break;
           break;
+        case 'h':
+          printf("Options:\n");
+          printf("-r Usage: -r (package) | This means remove a package.\n");
+          printf("-i Usage: -i (package) | This means install a package.\n");
+          printf("-s Usage: -s | This means perform a system update.\n");
+          printf("-h Usage: -h | This means that this message will come up.\n");
         case '?':
           /* getopt_long already printed an error message. */
           break;
