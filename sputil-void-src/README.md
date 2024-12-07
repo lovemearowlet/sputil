@@ -20,7 +20,7 @@ it should remove the install!
 - sudo (can be easily changed)
 - void linux w/ xbps (obv)
 - gnu's getopt (saying this cuz idk if it is pre-installed or not)
-- gcc
+- gcc (default for the makefile but clang does work too)
 - make
 ## usage:
 to update the void system simply do
