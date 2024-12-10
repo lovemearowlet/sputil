@@ -1,4 +1,4 @@
-# sputil for void linux!
+# sputil for linux!
 To install you can use the generic one i made or customize it to your likeing.
 ## installing with my makefile:
 config config.c then do
