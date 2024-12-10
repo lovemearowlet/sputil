@@ -3,7 +3,7 @@
 #include <getopt.h>
 #include <stdlib.h>
 #include <string.h>
-#include "config.c" // using a .c file cuz it is easier. i might change to a .h tho
+#include "config.h"
 //definitions to make it easier
 #define inarg installarg
 #define unarg unstallarg
